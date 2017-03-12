@@ -107,8 +107,9 @@ void deInitFull(){
 
 int SelectionMenu(){
         
-    int langId=0;
+    int langId=1;
     const char* languages[]={ 
+        "Japanese",
         "English",
         "French",            
         "German",              
@@ -162,7 +163,7 @@ int SelectionMenu(){
             OSScreenClearBufferEx(0, 0);
             OSScreenClearBufferEx(1, 0);
             
-            PRINT_TEXT2(0,0,"Spiik: Region and Language enforcer v0.1 (Phoenix)");
+            PRINT_TEXT2(0,0,"Spiik: Region and Language enforcer v0.1b (Phoenix)");
             PRINT_TEXT2(0,2,"Select with DPAD and confirm with A. Press HOME to exit.");
             //PRINT_TEXT2("\n");
                 
@@ -197,21 +198,21 @@ int SelectionMenu(){
             update=true;
         }else if (pressedBtns & VPAD_BUTTON_RIGHT){
             if(selectionId==0)
-                langId=(langId+1)%11;
+                langId=(langId+1)%12;
             else
                 regionId = (regionId+1)%3;
             update=true;
         }else if (pressedBtns & VPAD_BUTTON_LEFT){
             if(selectionId==0)
-                langId= langId==0? 10 : (langId-1)%11;
+                langId= langId==0? 11 : (langId-1)%12;
             else
                 regionId = regionId==0? 2 : (regionId-1)%3;
             update=true;
         }
-        usleep(60000);
+        usleep(80000);
     }
     
-    SetLanguage(langId+1);
+    SetLanguage(langId);
     SetRegion(1<<regionId);
         
     MEM1_free(screenBuffer);

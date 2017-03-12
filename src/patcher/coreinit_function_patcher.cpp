@@ -70,7 +70,7 @@ DECL(void, _Exit, void){
 }
 
 DECL(int, UCReadSysConfig, int IOHandle, int count, struct UCSysConfig* settings){
-    log_print("UCReadSysConfig\n");
+    log_printf("UCReadSysConfig: %s\n",settings->name);
     
     int result = real_UCReadSysConfig(IOHandle,count,settings);
         
